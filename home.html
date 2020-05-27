@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css1/employee_management.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+      <link rel="stylesheet" href="css1/employee_management.css">
+	  <link rel="stylesheet" href="css1/delivary_boy_management">
+    <title>Student Management</title>
+</head>
+<body>
+    <div class="header background_color text-white  text-center">
+        <h5 class="align-text-bottom">Student Management</h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"></div>
+		
+        <form class="rounded-2 bg-dark col-sm-3 form-inline d-flex justify-content-center md-form form-sm  mt-2" >
+		
+            <input class=" mr-3 w-75 bg-dark border-0 text-white" onkeyup="myFunction()" type="text" placeholder="Search"
+              aria-label="Search" id="searchTable" >
+            <i class="fas fa-search" aria-hidden="true"></i>
+        </form>
+		
+        <div class=" col-sm-6"><form action="index.html">
+         &emsp;&emsp; <button  class="col-sm background_color button_size text-white  text-center">Register New Student</button>
+       &emsp;&emsp;  &emsp;&emsp;  &emsp;&emsp;
+        <button class="col-sm background_color button_size text-white  text-center">Export to PDF</button></form>
+        </div>
+
+
+    </div>
+<!-- search and buttons over -->
+
+<div class="row">
+        <div class="col-sm-3 justify-content-center mt-2 ">
+<!-- form  -->
+            
+
+            <div class="form-group table_column mx-3 py-5 px-3">
+                
+                <i class="fas fa-user-edit text-primary"></i>&nbsp; <input type="text" class="form_entry mx-auto" id="employeeName" placeholder=" First Name" value=""><br><br>
+                <i class="fas fa-user-edit text-primary"></i>  <input type="text" class="form_entry ml-2" id="employeeNo" placeholder=" Last Name"><br><br>
+               
+   <i class="fas fa-male text-primary"></i>   &emsp;  <select id="employeeSalary" name="Salary" class="form_entry"  class="form_entry ml-1" placeholder="Qualifiaction">
+                                                                  <option value="">Gender</option>
+                                                                <option value="Male">Male</option>
+                                                                <option value="Female">Female</option>
+														 <option value="Other">Other</option>
+                  </select><br><br>
+			    <i class="far fa-calendar-plus text-primary"></i> &nbsp; <input type="date" class="form_entry ml-1" id="employeeDateOfJoin" placeholder="  Date of Birth"><br><br>
+
+                <i class="fas fa-map-marker-alt text-primary"></i> &nbsp; <textarea class=" form_entry ml-2" rows="2" id="employeeAddress" placeholder="Address"></textarea><br><br>
+                <i class="fas fa-briefcase text-primary"></i> &nbsp; <select id="employeeShift" name="shift" class="form_entry ml-1" placeholder="Qualifiaction">
+                                                                
+                                                                <option value="">Qualification</option>
+                                                                <option value="Board/university">Board/university</option>
+																<option value="Passed / Perusing">Passed / Perusing</option>
+                                                                <option value="Score">Score</option>
+                  </select> <br><br>
+                  <input type="checkbox" id="employeeStatus" name="status" value="YES">&emsp; Intrested in Course
+            </div> </div>
+		
+<div class="col-sm-9  table_column mt-2 pt-0 pl-3 pr-0">
+<!-- table -->
+    <div class="row " id="table_row">
+    <table class="table table-striped table-bordered table-sm css-serial " id="employee_table">
+    <thead>
+      <tr>
+        <th scope="col" >Sr No</th>
+		
+        <th scope="col" >First Name</th>
+        <th scope="col" >Last Name</th>
+		<th scope="col" >Address</th>	
+        <th scope="col" >Date Of Birth</th>
+		<th scope="col" >Gender</th>
+        <th scope="col" >Oualifiaction</th>
+		<th scope="col" >Intrested in Course</th>
+        
+      </tr>
+	  
+    </thead>
+    <tbody id="tableBody">
+
+    </tbody>
+            </table>
+
+
+
+                </div>
+                <div class="row">
+                    <button class="col-sm-2 background_color button_size text-white  text-center mx-auto" onclick="addEmployee()">Add</button>
+                    <button class="col-sm-2 background_color button_size text-white  text-center mx-auto" onclick="updateRow()">Update</button>
+                    <button class="col-sm-2 background_color button_size text-white  text-center mx-auto" onclick="deleteRow()">Delete</button>
+                    <button class="col-sm-2 background_color button_size text-white  text-center mx-auto" onclick="resetTable()">Reset / Edit</button>
+
+                </div>
+
+
+
+</div>
+</div>
+
+
+
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+
+
+<script src="js1/employee_management.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
